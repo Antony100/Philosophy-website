@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <br>
+
+    <h2> FAQS </h2>
+
+    <hr class="my-4"/>
+
+    <div class="accordion" id="faqAccordion">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faqHeading1">
+              <button class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse" data-bs-target="#faqCollapse1"
+                      aria-expanded="false" aria-controls="faqCollapse1">
+                Question 1
+              </button>
+            </h2>
+            <div id="faqCollapse1" class="accordion-collapse collapse"
+                 aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </div>
+            </div>
+          </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading2">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faqCollapse2"
+                    aria-expanded="false" aria-controls="faqCollapse2">
+              Question 2
+            </button>
+          </h2>
+          <div id="faqCollapse2" class="accordion-collapse collapse"
+               aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeading3">
+            <button class="accordion-button collapsed" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#faqCollapse3"
+                    aria-expanded="false" aria-controls="faqCollapse3">
+              Question 3
+            </button>
+          </h2>
+          <div id="faqCollapse3" class="accordion-collapse collapse" 
+               aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+              do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+
+</div>
+
+
+  
+
+{% include "footer.html" %}
+
+{% endblock %}

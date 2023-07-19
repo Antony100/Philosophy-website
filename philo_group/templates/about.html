@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <br>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="jumbotron">
+                <h1 class="display-4">Insert Title</h1>
+                <i class="lead">Thought provoking quote</i>
+                <p>- Old Person </p>
+                <hr class="my-4">
+                <h5>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </h5>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <img src="{% static 'images/busts.jpg' %}" class="img-fluid rounded opacity-light">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <br>
+        <hr class="my-4"/>
+        <hr class="my-4"/>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Section 1</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+
+        <div class="col-md-4">
+            <h2>Section 2</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+
+        <div class="col-md-4">
+            <h2>Section 3</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <br>
+        <hr class="my-4"/>
+        <hr class="my-4"/>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2 id="location">Location</h2>
+            <p>
+                Place Name, <br>
+                100 Address Road, <br>
+                Town, <br>
+                City, <br>
+                XX10 1AA
+            </p>
+        </div>
+
+        <div class="col-md-4">
+            <h2 id="contact">Sessions</h2>
+            <p>
+                Sessions Happen <br>
+                Session start time: <b> XX:XX – XX:XX </b> <br>
+                {% for date in sessiondate %}
+                next session: <b>{{date.event_date}}</b>
+                {% endfor %}
+            </p>
+        </div>
+
+        <div class="col-md-4">
+            <h2 id="contact">Contact</h2>
+            <p>PHILOSOPHYEMAIL@EMAIL.COM</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% include "footer.html" %}
+
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+{% load markdownify %}
+
+{% block content %}
+<br>
+
+<div class="container">
+
+  
+  
+  <!--alert bar -->
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="row"> 
+      <div class="col-md-10">
+      {% for date in sessiondate %}
+        <strong>Next Session:</strong>
+        {{ date.event_date }} @ VENUE ADDRESS
+      </div>
+      <div class="col">
+        <a
+          href="{% url 'philo_group:about' %}#location"
+          class="justify-content-end"
+        >
+          more info
+        </a>
+    </div>
+  </div>
+    
+    {% endfor %}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close">
+    </button>
+  </div>
+
+  <!--cards -->
+  <div class="row">
+
+    <div class="col">
+      {% for session in sessions %}
+        <div class="card m-3">
+          <div class="card-header text-center">
+            {{ session.title }}
+          </div>
+
+          <div class="card-body">
+            {% for post in session.postsinsession_set.all %}
+              <div class="accordion" id="accordiansession">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading{{ post.post.id }}">
+                    <button
+                      class="accordion-button collapsed"
+                      type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapse{{ post.post.id }}"
+                      aria-expanded="false"
+                      aria-controls="collapse{{ post.post.id }}">
+                      {{ post.post.title }}
+                    </button>
+                  </h2>
+                  <div
+                    id="collapse{{ post.post.id }}"
+                    class="accordion-collapse collapse"
+                    aria-labelledby="heading{{ post.post.id }}"
+                    data-bs-parent="#accordiansession"
+                  >
+                    <div class="accordion-body">
+                      <p>{{ post.post.body | markdownify }} </p>
+                      <p class="text-end fs-6 fw-lighter fst-italic">Tags:
+                        {% for tag in post.post.tags.all %}
+                          <a
+                            href="{% url 'philo_group:tag_posts' tag.slug %}">{{ tag }}</a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="col-4"> 
+      <div class="card border-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">Tags</div>
+        <div class="card-body">
+          {% for tag in tags %}
+            <a href="{% url 'philo_group:tag_posts' tag.slug %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="card border-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">About these Sessions </div>
+        <div class="card-body">
+          <p class="card-text">
+            The sessions listed here are a summary and notes of the subjects
+            discussed in each session
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  
+  </div>
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      {% if sessions.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ sessions.previous_page_number }}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% endif %}
+      
+      {% for num in sessions.paginator.page_range %}
+        {% if sessions.number == num %}
+          <li class="page-item active" aria-current="page">
+            <span class="page-link">{{ num }}</span>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+      
+      {% if sessions.has_next %}
+        <li class="page-item">
+          <a
+            class="page-link"
+            href="?page={{ sessions.next_page_number }}"
+            aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+  
+
+</div>
+{% include "footer.html" %}
+{% endblock %}
