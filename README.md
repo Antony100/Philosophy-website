@@ -6,3 +6,6 @@ Posts and sessions are created using Django's admin page. Posts and sessions are
 
 #### Tags
 `django-taggit` (https://django-taggit.readthedocs.io/en/latest/) is used to apply tags to posts. When a post is created, a tag can be added, allowing for filtering by subject matter on the sessions page.
+
+#### Homepage screenshot
+![alt text](https://github.com/Antony100/Philosophy-website/blob/main/screenshots/home-page.png?raw=true)
